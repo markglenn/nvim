@@ -9,6 +9,8 @@ require('packer').startup(function(use)
   use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } }
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
   use 'Mofiqul/dracula.nvim'
+	use 'tpope/vim-fugitive'
+	use { 'lewis6991/gitsigns.nvim' }
 
 	-- NOTE: Make sure to install ripgrep too in the terminal
 	use { 'nvim-telescope/telescope.nvim', tag = '0.1.x', requires = { {'nvim-lua/plenary.nvim'} } }
@@ -28,31 +30,8 @@ require('packer').startup(function(use)
   end
 end)
 
-vim.keymap.set('n', '<Leader>p', ':NvimTreeToggle<CR>')
-vim.keymap.set('n', '<Leader>f', ':NvimTreeFindFile<CR>')
-
--- Window navigation shortcuts for Ctrl-<direction> instead of Crtl-w <direction>
-vim.keymap.set({'n', 'v', 'i'}, '<C-h>', '<C-w>h')
-vim.keymap.set({'n', 'v', 'i'}, '<C-j>', '<C-w>j')
-vim.keymap.set({'n', 'v', 'i'}, '<C-k>', '<C-w>k')
-vim.keymap.set({'n', 'v', 'i'}, '<C-l>', '<C-w>l')
-
--- Telescope
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<C-p>', builtin.find_files, {})
-vim.keymap.set('n', '<C-S-p>', builtin.live_grep, {})
-
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-
--- Set up relative line numbers
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.wildmode = 'longest,list'
-
--- set termguicolors to enable highlight groups
-vim.opt.termguicolors = true
+require('keybindings')
+require('vim-options')
 
 vim.cmd[[colorscheme dracula]]
 
@@ -65,3 +44,4 @@ require('nvim-tree').setup({
 })
 
 require('lualine').setup()
+require('gitsigns').setup()
