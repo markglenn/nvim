@@ -11,4 +11,10 @@ vim.keymap.set({'n', 'v', 'i'}, '<C-l>', '<C-w>l')
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<C-p>', builtin.find_files, {})
 vim.keymap.set('n', '<C-S-p>', builtin.live_grep, {})
-vim.keymap.set('n', '<Leader>be', builtin.buffers, {})
+
+-- Git
+vim.keymap.set('n', '<Leader>gg', ':Git<CR>')
+vim.keymap.set('n', '<Leader>gd', ':Gvdiffsplit<CR>')
+
+-- Clear search highlight on \h
+vim.keymap.set('n', '<Leader>h', ':nohl<CR>')
